@@ -78,8 +78,7 @@ int main() {
         i++;
     int chislo = 0;
     while (out[i] != '\0') {
-        if (out[i] != ' ' && chislo == 0)
-        {
+        if (out[i] != ' ' && chislo == 0){
            chislo = 1;
             c++;
         }
