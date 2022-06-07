@@ -5,37 +5,54 @@
 #include <limits>
 #include "functions.h"
 #include <cstdlib>
+#include <cctype>
 
 using namespace std;
-
-//char *file_name[];
 
 int main(int argc, char *argv[]){
     clear_scr();
     
     system("chcp 65001");
     //Чтение файла с матрицей
-    //string file_name="array.txt";
     string file_name = argv[1];
-    fstream f;
-    f.open(file_name);
-    //ifstream inp(file_name);
     int r = 0;
     int c = 0;
-    while (!(f.is_open()))
+    fstream f3;
+    f3.open(file_name);
+    while (!(f3.is_open()))
     {
-        cout << "Ошибка открытия файла" << file_name << endl;
+        cout << "Ошибка открытия файла " << file_name << endl;
         cout << "Введите имя файла с расширением, в котором есть матрица(Например 'test.txt')" << endl;
         cin >> file_name;
-        f.open(file_name);
+        f3.open(file_name);
     }
-    while (f.ignore(numeric_limits<streamsize>::max(), '\n')){
-        if (!f.eof()) // если в конце последней строки '\n', иначе не нужно
+    f3.close();
+    //проверка на содержимое файла(если есть символ не цифра или не пробел, то ошибка)
+    fstream f;
+    f.open(file_name);
+    char sim;
+    while (!f.eof()){
+        f >> sim;
+        if (isalpha(sim)){
+            f.close();
+            cout << "Ошибка открытия файла" << file_name << endl;
+            cout << "В файле должны содержаться только символы и пробелы" << endl;
+            cout << "Измените содержимое файла и снова введите его имя"<<endl;
+            cin >> file_name;
+            open_file(file_name);
+        }
+    }
+    f.close();
+    //подсчет количества строк
+    ifstream fa;
+    fa.open(file_name);
+    while (fa.ignore(numeric_limits<streamsize>::max(), '\n')){
+        if (!fa.eof()) // если в конце последней строки '\n', иначе не нужно
             r++;
     }
-
-    f.close();
+    fa.close();
     cout << "Количество строк в файле равно " << r + 1 << endl;
+    //подсчет количества столбцов
     ifstream inp1(file_name);
     string out;
     getline(inp1, out);

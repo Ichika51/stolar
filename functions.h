@@ -92,3 +92,15 @@ void запись_массива_диагонали_2(int p, int *хуйня, in
         массив[row-1-i][i] = хуйня[i];
     }
 }
+
+void open_file(string file_name){
+    fstream f;
+    f.open(file_name);
+    while (!(f.is_open()))
+    {
+        cout << "Ошибка открытия файла " << file_name << endl;
+        cout << "Введите имя файла с расширением, в котором есть матрица(Например 'test.txt')" << endl;
+        cin >> file_name;
+        f.open(file_name);
+    }
+}
