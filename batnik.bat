@@ -1,2 +1,1 @@
-Source.exe arra.txt
-pause
+Source.exe array.txt

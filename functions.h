@@ -54,10 +54,20 @@ int minim_road(int row, int column, int **array ) {
     return array[row - 1][column - 1];
 }
 
-int* replay_string(int k, int **array1, int c){
+int* replay_string_1(int k, int **array1, int c){
     int* string = new int[k];
     for (int i = 0;i < k; i++) {
         string[i] = { array1[c][i] };
+    }
+    return string;
+}
+
+int *replay_string_2(int k, int **array1, int c)
+{
+    int *string = new int[k];
+    for (int i = 0; i < k; i++)
+    {
+        string[i] = {array1[i][c]};
     }
     return string;
 }
@@ -74,6 +84,14 @@ void запись_массива(int p, int * хуйня, int** массив){//
 
 void перезапись_массива(int column, int* string_column, int** array1, int k){//формирование массива со строкой и столбцом
     for (int i = 0; i < column; i++) {
+        array1[i][k] = string_column[i];
+    }
+}
+
+void перезапись_массива_1(int column, int *string_column, int **array1, int k)
+{ //формирование массива со строкой и столбцом
+    for (int i = 0; i < column; i++)
+    {
         array1[k][i] = string_column[i];
     }
 }
