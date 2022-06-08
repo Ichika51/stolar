@@ -14,7 +14,7 @@ using namespace std;
 int main(int argc, char *argv[]){
     system("chcp 65001");
     string file_name;
-    if (argc == 0 || argv == nullptr || argv[1]==nullptr)
+    if (argv[1]==nullptr)
     {
         cout << "Не был передан аргумент(имя файла)"<<endl;
         cout << "Введите имя файла с расширением, в котором есть матрица(Например 'test.txt')" << endl;
@@ -22,7 +22,6 @@ int main(int argc, char *argv[]){
     }
     else
         file_name = argv[1];
-    clear_scr();
     //Чтение файла с матрицей
     int r = 0;
     int c = 0;
