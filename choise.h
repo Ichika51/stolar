@@ -8,6 +8,32 @@
 
 using namespace std;
 
+void open_hui(string file_name){
+    fstream f3;
+    f3.open(file_name);
+    while (!(f3.is_open()))
+    {
+        cout << "Ошибка открытия файла " << file_name << endl;
+        cout << "Введите имя файла с расширением, в котором есть матрица(Например 'test.txt')" << endl;
+        cin >> file_name;
+        f3.open(file_name);
+    }
+    char sim;
+    while (f3.is_open() && !f3.eof())
+    {
+        f3 >> sim;
+        if (isalpha(sim) || ispunct(sim))
+        {
+            f3.close();
+            cout << "Ошибка открытия файла " << file_name << endl;
+            cout << "В файле должны содержаться только цифры и пробелы" << endl;
+            cout << "Измените содержимое файла и снова введите его имя" << endl;
+            cin >> file_name;
+            f3.open(file_name);
+        }
+    }
+}
+
 int checkNumber()
 { //проверка корректности целого числа
     int k;

@@ -1,1 +1,1 @@
-Source.exe array.txt
+Source.exe arra.txt
