@@ -70,14 +70,16 @@ int main(int argc, char *argv[]){
             {
                 array[i] = (int *)malloc(column * sizeof(int));
             }
-
+            int ch=0;
             ifstream f1(file_name);
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < column; j++)
                 {
                     f1 >> array[i][j];
-                    if (i>(column-1)||j>(row) ){
+                    ch++;
+                    if (ch>((column-1)*row)) {
+                        cout << "Элементов должно быть " <<(column-1)*row<<endl;
                         f1.close();
                         cout << "Неправильная матрица(во всех строках должно быть одинаковое количество цифр)"<<endl;
                         cout << "Введите имя файла, в котором есть правильная матрица: "<<endl;
